@@ -1,0 +1,365 @@
+/* General container */
+.property-detail-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* Loading and not found */
+  .property-detail-loading, .property-not-found {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 10px auto;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Property Gallery */
+  .property-gallery {
+    margin-bottom: 20px;
+  }
+  
+  .main-image-container {
+    position: relative;
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  
+  .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .gallery-nav.prev {
+    left: 10px;
+  }
+  
+  .gallery-nav.next {
+    right: 10px;
+  }
+  
+  .thumbnail-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .thumbnail {
+    width: 80px;
+    height: 60px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+  }
+  
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+  
+  .thumbnail.active {
+    border: 2px solid #007bff;
+  }
+  
+  /* Property Overview */
+  .property-overview {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .property-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .property-address {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .property-price-section {
+    text-align: right;
+  }
+  
+  .property-price {
+    font-size: 26px;
+    color: #007bff;
+  }
+  
+  .property-type-badge {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Property Features */
+  .property-main-features {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .feature i {
+    color: #007bff;
+  }
+  
+  /* Property Actions */
+  .property-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .action-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .action-button.primary {
+    background: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .action-button.secondary {
+    background: #ffc107;
+    color: black;
+    border: none;
+  }
+  
+  .action-button.tertiary {
+    background: #6c757d;
+    color: white;
+    border: none;
+  }
+  
+  .action-button.favorite {
+    background: white;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+  }
+  
+  .action-button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Contact Form */
+  .contact-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input, 
+  .form-group textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .submit-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Property Details */
+  .property-details-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .property-description {
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .property-features-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .feature-item {
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .feature-item i {
+    color: #28a745;
+  }
+  
+  /* Property Location */
+  .map-container {
+    background: #e9ecef;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .map-placeholder {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  /* Agent Information */
+  .agent-information {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .agent-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .agent-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .agent-details {
+    flex-grow: 1;
+  }
+  
+  .agent-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .agent-contact {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .view-agent-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .view-agent-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Similar Properties */
+  .similar-properties-section {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .similar-properties-placeholder {
+    text-align: center;
+    color: gray;
+    padding: 20px;
+  }
+  

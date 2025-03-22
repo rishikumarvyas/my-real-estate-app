@@ -1,0 +1,122 @@
+/* SearchBar Styles */
+.searchbar-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+  }
+  
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: rgb(18, 16, 16);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-input-group {
+    flex: 1 1 250px;
+    position: relative;
+  }
+  
+  .search-select-group {
+    flex: 1 1 150px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--text-light);
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .search-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    appearance: none;
+    background-color: rgb(16, 131, 163);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c757d' d='M6 8.825L1.175 4 2.05 3.125 6 7.075 9.95 3.125 10.825 4 6 8.825z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+  }
+  
+  .search-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .search-button:hover {
+    background-color: #217dbb;
+  }
+  
+  .advanced-search {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .advanced-search-button {
+    background-color: transparent;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .advanced-search-button:hover {
+    color: #217dbb;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .searchbar-container {
+      padding: 0 0.5rem;
+    }
+    
+    .search-form {
+      padding: 0.75rem;
+    }
+    
+    .search-input-group {
+      flex: 1 1 100%;
+    }
+    
+    .search-select-group {
+      flex: 1 1 calc(50% - 0.25rem);
+    }
+    
+    .search-button {
+      flex: 1 1 100%;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .search-select-group {
+      flex: 1 1 100%;
+    }
+  }

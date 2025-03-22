@@ -1,0 +1,387 @@
+/* agents.css */
+
+/* Page Layout */
+.agents-page {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Hero Section */
+  .agents-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('../assets/images/agents-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 20px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+  
+  /* Filters Section */
+  .agents-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .search-container {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .agent-search {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .agent-search:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+  }
+  
+  .specialty-filter {
+    min-width: 200px;
+  }
+  
+  .specialty-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+  }
+  
+  .specialty-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  /* Agents Grid */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  /* Agent Card */
+  .agent-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .agent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  .agent-image-container {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+  
+  .agent-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+  }
+  
+  .agent-card:hover .agent-image {
+    transform: scale(1.05);
+  }
+  
+  .agent-listings-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .agent-content {
+    padding: 20px;
+  }
+  
+  .agent-name {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .agent-title {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+  }
+  
+  .agent-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .stars {
+    color: #f5a623;
+    margin-right: 8px;
+  }
+  
+  .rating-text {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .agent-specialty, .agent-experience {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .agent-description {
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .agent-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .contact-item i {
+    margin-right: 8px;
+    color: #4a90e2;
+  }
+  
+  .agent-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .view-profile-button, .contact-agent-button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  
+  .view-profile-button {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .contact-agent-button {
+    background-color: #4a90e2;
+    color: white;
+    border: 1px solid #4a90e2;
+  }
+  
+  .view-profile-button:hover {
+    background-color: #eaeaea;
+  }
+  
+  .contact-agent-button:hover {
+    background-color: #3a80d2;
+  }
+  
+  /* Loading State */
+  .loading {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #4a90e2;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 15px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* No Results State */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .no-results i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .no-results p {
+    color: #777;
+  }
+  
+  /* Join Team CTA */
+  .join-team-cta {
+    background: linear-gradient(135deg, #4a90e2, #2c5b9b);
+    border-radius: 8px;
+    padding: 40px;
+    margin-top: 40px;
+  }
+  
+  .cta-content {
+    text-align: center;
+    color: white;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .cta-content p {
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+  }
+  
+  .join-team-button {
+    display: inline-block;
+    background-color: white;
+    color: #4a90e2;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .join-team-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .agents-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .agents-filters {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .search-container, .specialty-filter {
+      width: 100%;
+    }
+    
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    
+    .join-team-cta {
+      padding: 30px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .agents-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .agent-buttons {
+      flex-direction: column;
+    }
+    
+    .hero-content h1 {
+      font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+      font-size: 1rem;
+    }
+  }

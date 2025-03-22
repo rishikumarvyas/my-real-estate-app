@@ -1,0 +1,346 @@
+/* properties.css - Styling for property listings and details */
+
+/* Property Card Styles */
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .property-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+  
+  .property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .property-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .property-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .property-card:hover .property-image {
+    transform: scale(1.05);
+  }
+  
+  .property-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 2;
+  }
+  
+  .property-type {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+  }
+  
+  .property-type.sale {
+    background-color: var(--sale-color);
+    color: var(--white);
+  }
+  
+  .property-type.rent {
+    background-color: var(--rent-color);
+    color: var(--white);
+  }
+  
+  .favorite-button {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    z-index: 2;
+  }
+  
+  .favorite-button:hover {
+    background-color: var(--white);
+  }
+  
+  .favorite-button i {
+    color: var(--accent-color);
+    font-size: var(--font-md);
+  }
+  
+  .property-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .property-price {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .property-title {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+    transition: color var(--transition-fast);
+  }
+  
+  .property-title-link:hover .property-title {
+    color: var(--secondary-color);
+  }
+  
+  .property-address {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-sm);
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .property-address i {
+    font-size: var(--font-sm);
+    margin-right: var(--spacing-xs);
+    color: var(--secondary-color);
+  }
+  
+  .property-features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+  }
+  
+  .feature i {
+    font-size: var(--font-md);
+    color: var(--secondary-color);
+    margin-right: var(--spacing-xs);
+  }
+  
+  .feature span {
+    font-size: var(--font-sm);
+    color: var(--dark-gray);
+  }
+  
+  .property-footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .view-details-button {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--secondary-color);
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast);
+    text-align: center;
+    width: 100%;
+  }
+  
+  .view-details-button:hover {
+    background-color: #2980b9;
+    color: var(--white);
+  }
+  
+  /* Property Listing Page */
+  .properties-container {
+    padding-top: var(--spacing-2xl);
+  }
+  
+  .properties-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .properties-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .filter-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+  }
+  
+  .filter-button:hover,
+  .filter-button.active {
+    color: var(--white);
+    background-color: var(--secondary-color);
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+  }
+  
+  .pagination-item {
+    margin: 0 var(--spacing-xs);
+  }
+  
+  .pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+  
+  .pagination-link:hover,
+  .pagination-link.active {
+    color: var(--white);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  
+  /* Property Detail Page */
+  .property-detail-container {
+    padding-top: var(--spacing-xl);
+  }
+  
+  .property-gallery {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .gallery-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Property Info */
+  .property-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .property-main-info {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .agent-card {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .agent-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: var(--spacing-lg);
+  }
+  
+  .agent-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .agent-name {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .contact-button {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--secondary-color);
+    border-radius: var(--radius-full);
+  }
+  
+  .contact-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .property-info-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .agent-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .agent-photo {
+      margin-bottom: var(--spacing-md);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .properties-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .property-gallery {
+      height: 350px;
+    }
+  }
+  
