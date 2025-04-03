@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/auth.css';
+import '../styles/signup.css';
 import { AuthContext } from '../context/AuthContext';
 
 const Signup = () => {
@@ -10,11 +10,14 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    phoneNumber: '',
+    otp: '',
     agreeToTerms: false
   });
   
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
   
   const navigate = useNavigate();
   const { register } = useContext(AuthContext);
@@ -54,6 +57,17 @@ const Signup = () => {
       newErrors.email = 'Valid email is required';
     }
     
+    // Validate phone number
+    const phoneRegex = /^\+?[0-9]{10,15}$/;
+    if (!userData.phoneNumber.trim() || !phoneRegex.test(userData.phoneNumber)) {
+      newErrors.phoneNumber = 'Valid phone number is required';
+    }
+    
+    // Validate OTP if OTP has been sent
+    if (otpSent && (!userData.otp.trim() || userData.otp.length !== 6)) {
+      newErrors.otp = 'Valid 6-digit OTP is required';
+    }
+    
     // Validate password
     if (userData.password.length < 8) {
       newErrors.password = 'Password must be at least 8 characters';
@@ -71,6 +85,25 @@ const Signup = () => {
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSendOTP = (e) => {
+    e.preventDefault();
+    
+    // Validate phone number before sending OTP
+    const phoneRegex = /^\+?[0-9]{10,15}$/;
+    if (!userData.phoneNumber.trim() || !phoneRegex.test(userData.phoneNumber)) {
+      setErrors(prev => ({
+        ...prev,
+        phoneNumber: 'Valid phone number is required'
+      }));
+      return;
+    }
+    
+    // Simulate OTP sending
+    setTimeout(() => {
+      setOtpSent(true);
+    }, 1000);
   };
 
   const handleSubmit = async (e) => {
@@ -91,6 +124,7 @@ const Signup = () => {
           email: userData.email,
           firstName: userData.firstName,
           lastName: userData.lastName,
+          phoneNumber: userData.phoneNumber,
           // Other user data you might want to store
         });
         
@@ -167,6 +201,54 @@ const Signup = () => {
             </div>
             {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
+
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <div className="input-icon-wrapper">
+              <i className="fas fa-phone input-icon"></i>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={userData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                className={errors.phoneNumber ? 'input-error' : ''}
+              />
+              <button 
+                className="otp-button" 
+                onClick={handleSendOTP}
+                type="button"
+                disabled={otpSent}
+              >
+                {otpSent ? 'OTP Sent' : 'Send OTP'}
+              </button>
+            </div>
+            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber}</p>}
+          </div>
+
+          {otpSent && (
+            <div className="form-group">
+              <label htmlFor="otp">OTP Verification</label>
+              <div className="input-icon-wrapper">
+                <i className="fas fa-key input-icon"></i>
+                <input
+                  type="text"
+                  id="otp"
+                  name="otp"
+                  value={userData.otp}
+                  onChange={handleChange}
+                  placeholder="Enter 6-digit OTP"
+                  maxLength="6"
+                  className={errors.otp ? 'input-error' : ''}
+                />
+              </div>
+              {errors.otp && <p className="error-message">{errors.otp}</p>}
+              <p className="otp-hint">
+                OTP has been sent to your phone number. Valid for 10 minutes.
+              </p>
+            </div>
+          )}
 
           <div className="form-group">
             <label htmlFor="password">Password</label>

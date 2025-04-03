@@ -18,7 +18,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import SearchResults from './pages/SearchResults';
 import FilterPage from './pages/FilterPage';
-
+import RegisterPropertyPage from './pages/RegisterProperty';
+import ForgotPassword from './components/ForgotPassword';
 // Context Providers
 import { AuthProvider } from './context/AuthContext';
 import { PropertyProvider } from './context/PropertyContext';
@@ -28,9 +29,9 @@ import './styles/global.css';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <PropertyProvider>
+    <AuthProvider>
+      <PropertyProvider>
+        <Router>
           <div className="app-container">
             <Navbar />
             <main className="main-content">
@@ -41,24 +42,25 @@ function App() {
                 <Route path="/property/:id" element={<PropertyDetail />} />
                 <Route path="/buy" element={<Buy />} />
                 <Route path="/rent" element={<Rent />} />
-                <Route path="/agents" element={<Agents />} />
-                <Route path="/blog" element={<Blog />} />
+                {/* <Route path="/agents" element={<Agents />} />
+                <Route path="/blog" element={<Blog />} /> */}
                 <Route path="/contact" element={<Contact />} />
-                
+                <Route path="/register-property" element={<RegisterPropertyPage />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 {/* Auth Pages */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 
                 {/* Search & Filter Pages */}
-                <Route path="/search-results" element={<SearchResults />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="/filter" element={<FilterPage />} />
                 
                 {/* 404 Page - Catch all other routes */}
                 <Route path="*" element={
-                  <div className="not-found-page">
+                  <div className="not-found-container">
                     <h1>404 - Page Not Found</h1>
                     <p>The page you are looking for does not exist.</p>
-                    <button onClick={() => window.history.back()}>
+                    <button className="back-button" onClick={() => window.history.back()}>
                       Go Back
                     </button>
                   </div>
@@ -67,9 +69,9 @@ function App() {
             </main>
             <Footer />
           </div>
-        </PropertyProvider>
-      </AuthProvider>
-    </Router>
+        </Router>
+      </PropertyProvider>
+    </AuthProvider>
   );
 }
 

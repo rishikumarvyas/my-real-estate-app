@@ -5,13 +5,16 @@ import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
-    email: '',
+    phoneNumber: '',
+    otp: '',
     password: '',
     rememberMe: false
   });
   
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [loginMethod, setLoginMethod] = useState('password'); // 'password' or 'otp'
   
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -22,6 +25,25 @@ const Login = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+  };
+
+  const handleSendOtp = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
+    
+    try {
+      // In a real app, you would make an API call to send OTP
+      // For demonstration purposes, we'll simulate a successful OTP sending after a delay
+      setTimeout(() => {
+        setIsLoading(false);
+        setOtpSent(true);
+      }, 1500);
+      
+    } catch (err) {
+      setIsLoading(false);
+      setError('Failed to send OTP. Please try again.');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -35,7 +57,7 @@ const Login = () => {
       setTimeout(() => {
         // Call the login function from AuthContext
         login({ 
-          email: credentials.email,
+          phoneNumber: credentials.phoneNumber,
           // Other user data you might receive from your API
           name: 'John Doe',
           id: '123456',
@@ -47,8 +69,14 @@ const Login = () => {
       
     } catch (err) {
       setIsLoading(false);
-      setError('Invalid email or password. Please try again.');
+      setError(loginMethod === 'password' ? 'Invalid phone number or password.' : 'Invalid OTP. Please try again.');
     }
+  };
+
+  const toggleLoginMethod = () => {
+    setLoginMethod(prev => prev === 'password' ? 'otp' : 'password');
+    setOtpSent(false);
+    setError('');
   };
 
   return (
@@ -59,44 +87,80 @@ const Login = () => {
           <p>Sign in to continue to your account</p>
         </div>
 
+        <div className="login-method-toggle">
+          <button 
+            className={`toggle-button ${loginMethod === 'password' ? 'active' : ''}`}
+            onClick={() => setLoginMethod('password')}
+          >
+            Password Login
+          </button>
+          <button 
+            className={`toggle-button ${loginMethod === 'otp' ? 'active' : ''}`}
+            onClick={() => setLoginMethod('otp')}
+          >
+            OTP Login
+          </button>
+        </div>
+
         {error && (
           <div className="auth-error">
             <i className="fas fa-exclamation-circle"></i> {error}
           </div>
         )}
 
-        <form className="auth-form" onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={loginMethod === 'password' ? handleSubmit : (otpSent ? handleSubmit : handleSendOtp)}>
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="phoneNumber">Phone Number</label>
             <div className="input-icon-wrapper">
-              <i className="fas fa-envelope input-icon"></i>
+              <i className="fas fa-phone input-icon"></i>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={credentials.email}
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={credentials.phoneNumber}
                 onChange={handleChange}
                 required
-                placeholder="Enter your email"
+                placeholder="Enter your phone number"
+                disabled={loginMethod === 'otp' && otpSent}
               />
             </div>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="input-icon-wrapper">
-              <i className="fas fa-lock input-icon"></i>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={credentials.password}
-                onChange={handleChange}
-                required
-                placeholder="Enter your password"
-              />
+          {loginMethod === 'password' && (
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <div className="input-icon-wrapper">
+                <i className="fas fa-lock input-icon"></i>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your password"
+                />
+              </div>
             </div>
-          </div>
+          )}
+
+          {loginMethod === 'otp' && otpSent && (
+            <div className="form-group">
+              <label htmlFor="otp">OTP</label>
+              <div className="input-icon-wrapper">
+                <i className="fas fa-key input-icon"></i>
+                <input
+                  type="text"
+                  id="otp"
+                  name="otp"
+                  value={credentials.otp}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter the OTP sent to your phone"
+                />
+              </div>
+            </div>
+          )}
 
           <div className="form-options">
             <div className="remember-me">
@@ -109,9 +173,24 @@ const Login = () => {
               />
               <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <Link to="/forgot-password" className="forgot-password">
-              Forgot Password?
-            </Link>
+            {loginMethod === 'password' ? (
+              <Link to="/forgot-password" className="forgot-password">
+                Forgot Password?
+              </Link>
+            ) : (
+              otpSent && (
+                <button 
+                  type="button" 
+                  className="forgot-password"
+                  onClick={() => {
+                    setOtpSent(false);
+                    setCredentials({...credentials, otp: ''});
+                  }}
+                >
+                  Resend OTP
+                </button>
+              )
+            )}
           </div>
 
           <button
@@ -120,9 +199,12 @@ const Login = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="loading-spinner"><i className="fas fa-spinner fa-spin"></i> Signing in...</span>
+              <span className="loading-spinner">
+                <i className="fas fa-spinner fa-spin"></i> 
+                {loginMethod === 'password' ? 'Signing in...' : (otpSent ? 'Verifying...' : 'Sending OTP...')}
+              </span>
             ) : (
-              'Sign In'
+              loginMethod === 'password' ? 'Sign In' : (otpSent ? 'Verify & Sign In' : 'Send OTP')
             )}
           </button>
         </form>

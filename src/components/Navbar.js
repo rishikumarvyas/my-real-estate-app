@@ -32,8 +32,8 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Buy', path: '/buy' },
     { name: 'Rent', path: '/rent' },
-    { name: 'Agents', path: '/agents' },
-    { name: 'Blog', path: '/blog' },
+    // { name: 'Agents', path: '/agents' },
+    // { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -63,6 +63,9 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-auth-buttons">
+        <Link to="/register-property" className="register-property-button">
+            Register Property
+          </Link>
           <Link to="/login" className="login-button">
             Login
           </Link>
